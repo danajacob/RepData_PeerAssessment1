@@ -284,7 +284,7 @@ round(maxStep, digits = 0)
 
 <p>There are 2,304 missing values in the data. </p>
 
-<p>#####Next, we use the mean for the 5-minute interval to fill in missing values and create a new dataset</p>
+<p>#####Next, we use the mean for the 5-minute intervals to impute missing values and create a new dataset</p>
 
 <pre><code class="r">newData &lt;- rawData
 newData$steps[is.na(newData$steps)] &lt;- 

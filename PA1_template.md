@@ -105,7 +105,7 @@ table (is.na(rawData))
 
 There are 2,304 missing values in the data. 
 
-#####Next, we use the mean for the 5-minute interval to fill in missing values and create a new dataset
+#####Next, we use the mean for the 5-minute intervals to impute missing values and create a new dataset
 
 
 ```r
