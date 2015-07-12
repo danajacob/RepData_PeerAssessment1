@@ -49,8 +49,8 @@ round(medianDay, digits = 0)
 ## [1] 10395
 ```
 
-######Average number of steps per day = 9,354  
-######Median number of steps per day = 10,395
+Average number of steps per day = 9,354  
+Median number of steps per day = 10,395
 
 ####What is the average daily activity pattern?
 
@@ -86,7 +86,7 @@ round(maxStep, digits = 0)
 ## 104      835   206
 ```
 
-######Interval 835, which occured on Oct 1, 2012, 206 steps were taken, higher than number of steps taken on any other intervals 
+At interval 835, which occured on Oct 1, 2012, 206 steps were taken, higher than number of steps taken at any other intervals. 
 
 ####Imputing missing values
 
@@ -136,9 +136,9 @@ hist(stepsDayNew, breaks=20, main = "Total number of steps per day using new dat
 
 ![plot of chunk new_total_steps_histogram](figure/new_total_steps_histogram-1.png) 
 
-######The histogram using the new dataset is closer to a 'normal distribution' as filled-in values for missing days helped to 'normalize' the data.
+The histogram using the new dataset is closer to a 'normal distribution' as filled-in values for missing days helped to 'normalize' the data.
 
-#####2. We calculate mean and median number of steps per day using new dataset
+#####2. We calculate mean and median number of steps per day using the new dataset
 
 
 ```r
@@ -159,30 +159,30 @@ round(medianDayNew, digits = 0)
 ## [1] 10766
 ```
 
-######Once missing values are filled in with interval means, the average and median number of steps per day increased:  
-######Average number of steps per day - old=9,354 new=10766  
-######Median number of steps per day - old=10,395 new=10766
+Once missing values are filled in with interval means, the average and median number of steps per day increased:  
+Average number of steps per day - old=9,354 new=10,766  
+Median number of steps per day - old=10,395 new=10,766
 
-#####3. We calculate means and medians for weekdays and weekends separately using new dataset
+#####3. We add a factor variable, dayType, to the new dataset to indicate whether a given date is a weekday or weekend day
 
 
 ```r
-#add a factor variable to the new dataset to indicate whether a given date is a weekday or weekend day
-
 newData$date <- as.Date(newData$date)
 newData$dayType <- factor(format(newData$date, "%A"))
-levels(newData$dayType) <- list(weekday=c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday"), weekend=c("Saturday", "Sunday"))
+levels(newData$dayType) <- 
+    list(weekday=c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday"),
+         weekend=c("Saturday", "Sunday"))
 ```
 
 #####4. We make a panel plot with time series to compare activity patterns between weekdays and weekends
 
 
 ```r
-meanIntervalNew <- aggregate(steps ~ interval + dayType,
+stepsIntervalNew <- aggregate(steps ~ interval + dayType,
                              data = newData, FUN = mean)
 
 library(lattice)
-xyplot(type = "l", data = meanIntervalNew,
+xyplot(type = "l", data = stepsIntervalNew,
        steps ~ interval | dayType,
        layout = c(1,2), grid = T,
        xlab ="Interval",
@@ -191,4 +191,4 @@ xyplot(type = "l", data = meanIntervalNew,
 
 ![plot of chunk panel_plot](figure/panel_plot-1.png) 
 
-######Conclusion: more steps were taken on weekends than on weekdays.
+Conclusion: more steps were taken on weekends than on weekdays.
