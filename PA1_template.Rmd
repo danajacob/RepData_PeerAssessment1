@@ -10,6 +10,7 @@ library(plyr)
 ####Loading and preprocessing the data
 
 ```{r read_data}
+unzip("activity.zip")
 rawData <- read.csv("activity.csv", header = TRUE, sep = ",")
 rawData$date <- as.Date(rawData$date)    
 ```
