@@ -3,6 +3,7 @@ title: "Reproducible Research: Peer Assessment 1"
 author: "Dana Jacob"
 date: "July 11, 2015"
 output: html_document
+keep_md: true
 ---
 
 library(plyr)
@@ -11,6 +12,7 @@ library(plyr)
 
 
 ```r
+unzip("activity.zip")
 rawData <- read.csv("activity.csv", header = TRUE, sep = ",")
 rawData$date <- as.Date(rawData$date)    
 ```
